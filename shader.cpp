@@ -12,7 +12,7 @@ Shader::Shader(const std::string& fileName){
     m_shaders[0] = CreateShader(LoadShader(fileName + ".fs"), GL_FRAGMENT_SHADER);
 
     for(unsigned int i = 0; i < NUM_SHADERS; i++)
-        glAttachShader(m_shader, m_shaders[i]);
+        glAttachShader(m_program, m_shaders[i]);
 
     glBindAttribLocation(m_program, 0, "position");
 
@@ -33,7 +33,7 @@ Shader::~Shader(){
 }
 
 static GLuint CreateShader(const std::string& text, GLenum shaderType){
-    GLuint shader = glCreateShader();
+    GLuint shader = glCreateShader(shaderType);
 
     if(shader == 0)
         std::cerr << "Error shader creation failed!" << std::endl;
@@ -43,6 +43,11 @@ static GLuint CreateShader(const std::string& text, GLenum shaderType){
 
     shaderSourceStrings[0] = text.c_str();
     shaderSourceStringLengths[0] = text.length();
+
+    glShaderSource(shader, 1, shaderSourceStrings, shaderSourceStringLengths);
+    glCompileShader(shader);
+
+    CheckShaderError(shader, GL_COMPILE_STATUS, false, "Error: Shader compilation failed: ");
 
     return shader;
 }
