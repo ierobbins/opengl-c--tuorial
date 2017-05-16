@@ -14,7 +14,7 @@ main.o: main.cpp
 	g++ -c main.cpp -I $(GL_H)
 
 display.o: display.cpp display.h
-	g++ -c display.cpp -I $(SDL_H) $(GL_H)
+	g++ -c display.cpp -I $(SDL_H)
 
 shader.o: shader.cpp
 	g++ -c shader.cpp -I $(GL_H)
