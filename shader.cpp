@@ -71,6 +71,8 @@ static std::string LoadShader(const std::string fileName){
         }
     else
         std::cerr << "Unable to load shader: " << fileName << std::endl;
+
+    return output;
 }
 
 static void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage){
