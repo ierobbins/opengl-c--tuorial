@@ -22,5 +22,8 @@ shader.o: shader.cpp shader.h
 mesh.o: mesh.cpp mesh.h
 	g++ -c mesh.cpp -I $(GL_H)
 
+stb_image.o: stb_image.c stb_image.h
+	g++ -c stb_image.c
+
 clean:
 	rm *.o driver
