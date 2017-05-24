@@ -10,7 +10,7 @@ public:
 
     void Bind(unsigned int unit);
 
-    virutal ~Texture();
+    virtual ~Texture();
 protected:
 private:
     Texture(const Texture& other){}

@@ -7,8 +7,8 @@ SDL_L = libsdl2-dev
 
 CFLAGS = `sdl2-config --cflags --libs` -std=gnu++11
 
-run: main.o display.o shader.o mesh.o
-	g++ main.o display.o shader.o mesh.o -L $(CFLAGS) -lGL -lGLEW -o driver
+run: main.o display.o shader.o mesh.o stb_image.o texture.o
+	g++ main.o display.o shader.o mesh.o stb_image.o texture.o -L $(CFLAGS) -lGL -lGLEW -o driver
 
 main.o: main.cpp
 	g++ -c main.cpp -I $(GL_H)
@@ -24,6 +24,9 @@ mesh.o: mesh.cpp mesh.h
 
 stb_image.o: stb_image.c stb_image.h
 	g++ -c stb_image.c
+
+texture.o: texture.cpp texture.h
+	g++ -c texture.cpp -I $(GL_H)
 
 clean:
 	rm *.o driver

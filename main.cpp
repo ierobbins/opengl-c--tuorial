@@ -1,7 +1,9 @@
 #include <GL/glew.h>
 #include <iostream>
+#include <string>
 #include "display.h"
 #include "shader.h"
+#include "texture.h"
 #include "mesh.h"
 
 static const int DISPLAY_WIDTH  = 800;
@@ -17,10 +19,12 @@ int main(){
 
     Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
     Shader shader("./res/basicShader");
+    Texture texture("./res/bricks.jpg");
 
     while(!display.IsClosed()){
         display.Clear(0.0f,0.15f,0.3f,1.0f);
         shader.Bind();
+        texture.Bind(0);
         mesh.Draw();
         display.Update();
     }

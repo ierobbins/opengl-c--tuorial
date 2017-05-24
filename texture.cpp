@@ -1,10 +1,10 @@
 #include "texture.h"
 #include "stb_image.h"
-#include <cassert.h>
 #include <iostream>
+#include <string>
 
 Texture::Texture(const std::string& fileName){
-    unsigned inst width, height, numComponents;
+    unsigned int width, height, numComponents;
     unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &numComponents, 4);
 
     if(imageData == NULL)
@@ -25,8 +25,6 @@ Texture::Texture(const std::string& fileName){
 }
 
 void Texture::Bind(unsigned int unit){
-    assert(unit >= 0 && unit <= 31);
-
     glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, m_texture);
 }
