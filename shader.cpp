@@ -15,12 +15,13 @@ Shader::Shader(const std::string& fileName){
         glAttachShader(m_program, m_shaders[i]);
 
     glBindAttribLocation(m_program, 0, "position");
+    glBindAttribLocation(m_program, 1, "texCoord");
 
     glLinkProgram(m_program);
-    CheckShaderError(m_program, GL_LINK_STATUS, true, "Error: Program linking failed: ");
+    CheckShaderError(m_program, GL_LINK_STATUS, true, "SHADER Error: Program linking failed: ");
 
-    glLinkProgram(m_program);
-    CheckShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Program is invalid failed: ");
+    glValidateProgram(m_program);
+    CheckShaderError(m_program, GL_VALIDATE_STATUS, true, "SHADER Error: Program is invalid failed: ");
 }
 
 Shader::~Shader(){

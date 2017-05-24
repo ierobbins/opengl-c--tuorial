@@ -23,7 +23,7 @@ mesh.o: mesh.cpp mesh.h
 	g++ -c mesh.cpp -I $(GL_H)
 
 stb_image.o: stb_image.c stb_image.h
-	g++ -c stb_image.c
+	gcc -c stb_image.c
 
 texture.o: texture.cpp texture.h
 	g++ -c texture.cpp -I $(GL_H)
